@@ -1,7 +1,5 @@
 # Fuzzy Pip Matcher
 
----
-
 ## Pre-requisites
 
 - To build and run it is advised to have docker installed, and to target the provided Dockerfile
