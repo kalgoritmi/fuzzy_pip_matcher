@@ -21,7 +21,7 @@ Run container, default argument for package is `folium`:
 docker run -it --rm -e GITHUB_API_TOKEN="<your-github-api-pat>" fuzzy-pip-matcher
 ```
 
-override package to search for:
+override package to search for e.g. `leaflet`:
 ```shell
 docker run -it --rm -e GITHUB_API_TOKEN="<your-github-api-pat>" fuzzy-pip-matcher leaflet
 ```
