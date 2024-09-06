@@ -15,8 +15,13 @@ docker build -t fuzzy-pip-matcher -f Dockerfile .
 
 ## Run
 
-Run container:
+Run container, default argument for package is `folium`:
 
 ```shell
 docker run -it --rm -e GITHUB_API_TOKEN="<your-github-api-pat>" fuzzy-pip-matcher
+```
+
+override package to search for:
+```shell
+docker run -it --rm -e GITHUB_API_TOKEN="<your-github-api-pat>" fuzzy-pip-matcher leaflet
 ```
