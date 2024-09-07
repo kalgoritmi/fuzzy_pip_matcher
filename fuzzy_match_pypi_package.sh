@@ -34,7 +34,13 @@ declare -A package_stars
 echo $(pypi_query_stable $1)
 
 for package_snippet in $(pypi_query_stable "$1"); do
-  git_url="$(curl -s "https://pypi.org/project/$package_snippet/" | xmllint --nonet --html - --xpath '//h6[contains(text(), "Project links")]/following-sibling::*[1]//a[contains(@href, "github")]/@href' 2> /dev/null | grep -Po "(?<=href\=\"https://github.com/).*(?=\")" | head -n 1 | xargs -I {} echo 'https://api.github.com/repos/{}')"
+  git_url="$(
+    curl -s "https://pypi.org/project/$package_snippet/" | \
+    xmllint --nonet --html - --xpath '//h6[contains(text(), "Project links")]/following-sibling::*[1]//a[contains(@href, "github")]/@href' 2> /dev/null | \
+    grep -Po "(?<=href\=\"https://github.com/).*(?=\")" | \
+    head -n 1 | \
+    xargs -I {} echo 'https://api.github.com/repos/{}'
+  )"
   echo "$package_snippet $git_url"
   if [ -z "$git_url" ]; then
     echo "No git url found for $package_snippet"
